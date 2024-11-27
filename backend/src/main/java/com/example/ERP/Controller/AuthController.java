@@ -1,5 +1,6 @@
 package com.example.ERP.Controller;
 
+import com.example.ERP.Exception.JwtTokenNotValid;
 import com.example.ERP.Service.AuthService;
 import com.example.ERP.Util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class AuthController {
             response.put("token", token);
             return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(401).body("Invalid username or password");
+            throw new JwtTokenNotValid("Invalid username or password");
         }
     }
 }
